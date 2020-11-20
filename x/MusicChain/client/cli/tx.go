@@ -23,6 +23,9 @@ func GetTxCmd(cdc *codec.Codec) *cobra.Command {
 
 	MusicChainTxCmd.AddCommand(flags.PostCommands(
     // this line is used by starport scaffolding # 1
+		GetCmdCreateArtist(cdc),
+		GetCmdSetArtist(cdc),
+		GetCmdDeleteArtist(cdc),
 	)...)
 
 	return MusicChainTxCmd
