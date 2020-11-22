@@ -6,6 +6,5 @@ import (
 
 type Artist struct {
 	Creator sdk.AccAddress `json:"creator" yaml:"creator"`
-	ID      string         `json:"id" yaml:"id"`
-    Name string `json:"name" yaml:"name"`
+	Name    string         `json:"name" yaml:"name"`
 }

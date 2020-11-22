@@ -4,14 +4,14 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
+	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/zongpoljkk/MusicChain/x/MusicChain/types"
-    "github.com/cosmos/cosmos-sdk/codec"
 )
 
 // CreateArtist creates a artist
 func (k Keeper) CreateArtist(ctx sdk.Context, artist types.Artist) {
 	store := ctx.KVStore(k.storeKey)
-	key := []byte(types.ArtistPrefix + artist.ID)
+	key := []byte(types.ArtistPrefix + artist.Creator.String())
 	value := k.cdc.MustMarshalBinaryLengthPrefixed(artist)
 	store.Set(key, value)
 }
@@ -30,7 +30,7 @@ func (k Keeper) GetArtist(ctx sdk.Context, key string) (types.Artist, error) {
 
 // SetArtist sets a artist
 func (k Keeper) SetArtist(ctx sdk.Context, artist types.Artist) {
-	artistKey := artist.ID
+	artistKey := artist.Creator.String()
 	store := ctx.KVStore(k.storeKey)
 	bz := k.cdc.MustMarshalBinaryLengthPrefixed(artist)
 	key := []byte(types.ArtistPrefix + artistKey)
@@ -83,7 +83,6 @@ func (k Keeper) GetArtistOwner(ctx sdk.Context, key string) sdk.AccAddress {
 	}
 	return artist.Creator
 }
-
 
 // Check if the key exists in the store
 func (k Keeper) ArtistExists(ctx sdk.Context, key string) bool {

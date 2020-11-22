@@ -6,10 +6,8 @@ import (
 
 // RegisterCodec registers concrete types on codec
 func RegisterCodec(cdc *codec.Codec) {
-  // this line is used by starport scaffolding # 1
-		cdc.RegisterConcrete(MsgCreateArtist{}, "MusicChain/CreateArtist", nil)
-		cdc.RegisterConcrete(MsgSetArtist{}, "MusicChain/SetArtist", nil)
-		cdc.RegisterConcrete(MsgDeleteArtist{}, "MusicChain/DeleteArtist", nil)
+	// this line is used by starport scaffolding # 1
+	cdc.RegisterConcrete(MsgCreateArtist{}, "MusicChain/CreateArtist", nil)
 }
 
 // ModuleCdc defines the module codec
