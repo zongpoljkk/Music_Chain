@@ -18,3 +18,7 @@ const (
 	ArtistPrefix = "artist-"
 )
 		
+const (
+	MusicsPrefix = "musics-"
+)
+		

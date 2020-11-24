@@ -9,9 +9,9 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func listArtistHandler(cliCtx context.CLIContext, storeName string) http.HandlerFunc {
+func listMusicsHandler(cliCtx context.CLIContext, storeName string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		res, _, err := cliCtx.QueryWithData(fmt.Sprintf("custom/%s/list-artist", storeName), nil)
+		res, _, err := cliCtx.QueryWithData(fmt.Sprintf("custom/%s/list-musics", storeName), nil)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusNotFound, err.Error())
 			return
@@ -20,12 +20,12 @@ func listArtistHandler(cliCtx context.CLIContext, storeName string) http.Handler
 	}
 }
 
-func getArtistHandler(cliCtx context.CLIContext, storeName string) http.HandlerFunc {
+func getMusicsHandler(cliCtx context.CLIContext, storeName string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		vars := mux.Vars(r)
 		key := vars["key"]
 
-		res, _, err := cliCtx.QueryWithData(fmt.Sprintf("custom/%s/get-artist/%s", storeName, key), nil)
+		res, _, err := cliCtx.QueryWithData(fmt.Sprintf("custom/%s/get-musics/%s", storeName, key), nil)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusNotFound, err.Error())
 			return

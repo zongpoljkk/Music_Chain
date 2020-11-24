@@ -29,7 +29,9 @@ func GetQueryCmd(queryRoute string, cdc *codec.Codec) *cobra.Command {
 
 	MusicChainQueryCmd.AddCommand(
 		flags.GetCommands(
-      // this line is used by starport scaffolding # 1
+			// this line is used by starport scaffolding # 1
+			GetCmdListMusics(queryRoute, cdc),
+			GetCmdGetMusics(queryRoute, cdc),
 			GetCmdListArtist(queryRoute, cdc),
 			GetCmdGetArtist(queryRoute, cdc),
 		)...,
