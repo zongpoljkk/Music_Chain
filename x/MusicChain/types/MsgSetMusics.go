@@ -8,20 +8,18 @@ import (
 var _ sdk.Msg = &MsgSetMusics{}
 
 type MsgSetMusics struct {
-	ID        string         `json:"id" yaml:"id"`
-	Creator   sdk.AccAddress `json:"creator" yaml:"creator"`
-	MediaLink string         `json:"mediaLink" yaml:"mediaLink"`
-	Price     int32          `json:"price" yaml:"price"`
-	Name      string         `json:"name" yaml:"name"`
+	ID      string         `json:"id" yaml:"id"`
+	Creator sdk.AccAddress `json:"creator" yaml:"creator"`
+	Price   int32          `json:"price" yaml:"price"`
+	Name    string         `json:"name" yaml:"name"`
 }
 
-func NewMsgSetMusics(creator sdk.AccAddress, id string, mediaLink string, price int32, name string) MsgSetMusics {
+func NewMsgSetMusics(creator sdk.AccAddress, id string, price int32, name string) MsgSetMusics {
 	return MsgSetMusics{
-		ID:        id,
-		Creator:   creator,
-		MediaLink: mediaLink,
-		Price:     price,
-		Name:      name,
+		ID:      id,
+		Creator: creator,
+		Price:   price,
+		Name:    name,
 	}
 }
 

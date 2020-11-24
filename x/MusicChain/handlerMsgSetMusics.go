@@ -1,6 +1,8 @@
 package MusicChain
 
 import (
+	"encoding/json"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
@@ -9,15 +11,21 @@ import (
 )
 
 func handleMsgSetMusics(ctx sdk.Context, k keeper.Keeper, msg types.MsgSetMusics) (*sdk.Result, error) {
-	var musics = types.Musics{
-		Creator:   msg.Creator,
-		ID:        msg.ID,
-		MediaLink: msg.MediaLink,
-		Price:     msg.Price,
-		Name:      msg.Name,
-	}
 	if !msg.Creator.Equals(k.GetMusicsOwner(ctx, msg.ID)) { // Checks if the the msg sender is the same as the current owner
 		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "Incorrect Owner") // If not, throw an error
+	}
+
+	musics, err := k.GetMusics(ctx, msg.ID)
+
+	if err != nil {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, err.Error())
+	}
+
+	b, err := json.Marshal(msg)
+	err = json.Unmarshal(b, &musics)
+
+	if err != nil {
+		return nil, sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, err.Error())
 	}
 
 	k.SetMusics(ctx, musics)

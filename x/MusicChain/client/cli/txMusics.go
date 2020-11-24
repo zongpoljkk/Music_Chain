@@ -50,19 +50,18 @@ func GetCmdCreateMusics(cdc *codec.Codec) *cobra.Command {
 
 func GetCmdSetMusics(cdc *codec.Codec) *cobra.Command {
 	return &cobra.Command{
-		Use:   "set-musics [id]  [mediaLink] [price] [name]",
+		Use:   "set-musics [id] [price] [name]",
 		Short: "Set a new musics",
-		Args:  cobra.ExactArgs(4),
+		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			id := args[0]
-			argsMediaLink := string(args[1])
-			argsPrice, _ := strconv.ParseInt(args[2], 10, 64)
-			argsName := string(args[3])
+			argsPrice, _ := strconv.ParseInt(args[1], 10, 64)
+			argsName := string(args[2])
 
 			cliCtx := context.NewCLIContext().WithCodec(cdc)
 			inBuf := bufio.NewReader(cmd.InOrStdin())
 			txBldr := auth.NewTxBuilderFromCLI(inBuf).WithTxEncoder(sdkutils.GetTxEncoder(cdc))
-			msg := types.NewMsgSetMusics(cliCtx.GetFromAddress(), id, string(argsMediaLink), int32(argsPrice), string(argsName))
+			msg := types.NewMsgSetMusics(cliCtx.GetFromAddress(), id, int32(argsPrice), string(argsName))
 			err := msg.ValidateBasic()
 			if err != nil {
 				return err

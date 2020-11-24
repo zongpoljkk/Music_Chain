@@ -65,12 +65,11 @@ func createMusicsHandler(cliCtx context.CLIContext) http.HandlerFunc {
 }
 
 type setMusicsRequest struct {
-	BaseReq   rest.BaseReq `json:"base_req"`
-	ID        string       `json:"id"`
-	Creator   string       `json:"creator"`
-	MediaLink string       `json:"mediaLink"`
-	Price     string       `json:"price"`
-	Name      string       `json:"name"`
+	BaseReq rest.BaseReq `json:"base_req"`
+	ID      string       `json:"id"`
+	Creator string       `json:"creator"`
+	Price   string       `json:"price"`
+	Name    string       `json:"name"`
 }
 
 func setMusicsHandler(cliCtx context.CLIContext) http.HandlerFunc {
@@ -90,8 +89,6 @@ func setMusicsHandler(cliCtx context.CLIContext) http.HandlerFunc {
 			return
 		}
 
-		parsedMediaLink := req.MediaLink
-
 		parsedPrice64, err := strconv.ParseInt(req.Price, 10, 32)
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusBadRequest, err.Error())
@@ -104,7 +101,6 @@ func setMusicsHandler(cliCtx context.CLIContext) http.HandlerFunc {
 		msg := types.NewMsgSetMusics(
 			creator,
 			req.ID,
-			parsedMediaLink,
 			parsedPrice,
 			parsedName,
 		)
