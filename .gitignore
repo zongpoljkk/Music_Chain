@@ -3,3 +3,4 @@ vue/dist
 vue/.cache
 build
 .mnemonic
+service_account_key.json
