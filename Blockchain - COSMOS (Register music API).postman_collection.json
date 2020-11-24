@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "c9d318d2-cb4e-442c-a200-a4a99f8521e6",
+		"name": "Blockchain - COSMOS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register music",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "base_req",
+							"value": "{\n    \"chain_id\": \"MusicChain\",\n    \"from\": \"cosmos18mgjd8h4j4ta4mvttkxk38a6dgmd27z8r7pmn2\"\n  }",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/home/intaniger/Documents/SCB - Q&A/VID_20201116_161857.mp4"
+						},
+						{
+							"key": "creator",
+							"value": "cosmos18mgjd8h4j4ta4mvttkxk38a6dgmd27z8r7pmn2",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Believe",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:1317/MusicChain/musics",
+					"host": [
+						"localhost"
+					],
+					"port": "1317",
+					"path": [
+						"MusicChain",
+						"musics"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
