@@ -3,6 +3,8 @@ package keeper
 import (
 	// this line is used by starport scaffolding # 1
 	"github.com/zongpoljkk/MusicChain/x/MusicChain/types"
+		
+	
 
 	abci "github.com/tendermint/tendermint/abci/types"
 
@@ -15,6 +17,10 @@ func NewQuerier(k Keeper) sdk.Querier {
 	return func(ctx sdk.Context, path []string, req abci.RequestQuery) ([]byte, error) {
 		switch path[0] {
 		// this line is used by starport scaffolding # 2
+		case types.QueryListPurchased:
+			return listPurchased(ctx, k)
+		case types.QueryGetPurchased:
+			return getPurchased(ctx, path[1:], k)
 		case types.QueryListMusics:
 			return listMusics(ctx, k)
 		case types.QueryGetMusics:

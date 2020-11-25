@@ -22,3 +22,7 @@ const (
 	MusicsPrefix = "musics-"
 )
 		
+const (
+	PurchasedPrefix = "purchased-"
+)
+		

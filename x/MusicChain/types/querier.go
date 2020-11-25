@@ -7,3 +7,6 @@ package types
 		const QueryListMusics = "list-musics"
 		const QueryGetMusics = "get-musics"
 		
+		const QueryListPurchased = "list-purchased"
+		const QueryGetPurchased = "get-purchased"
+		
