@@ -10,12 +10,14 @@
         :fields="['price', 'name', 'file']"
         module="MusicChain"
       /> -->
+      <h3>New Music</h3>
       <div style="border:1px solid black;padding:20px">
         <input placeholder="price" id="price" autocomplete="off" /><br />
         <input placeholder="name" id="name" autocomplete="off" /><br />
         <input type="file" id="file" /><br />
         <button v-on:click="onClickCreate()">CREATE MUSIC</button>
       </div>
+      <sp-type-form type="musics" module="MusicChain" />
       <div></div>
       <sp-type-form type="artist" :fields="['name']" module="MusicChain" />
     </div>
@@ -34,6 +36,7 @@ import {
 
 export default {
   components: { ...sp },
+  computed: {},
   methods: {
     onClickCreate: async function() {
       let price = document.getElementById("price").value;
