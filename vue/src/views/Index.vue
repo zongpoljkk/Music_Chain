@@ -3,16 +3,16 @@
     <div class="sp-container">
       <sp-sign-in />
       <sp-bank-balances />
-      <sp-token-send />
+      <!-- <sp-token-send /> -->
       <!-- this line is used by starport scaffolding # 4 -->
-
-		<sp-type-form type="purchased" :fields="['MusicID', ]" module="MusicChain" />
 
       <!-- <sp-type-form
         type="musics"
         :fields="['price', 'name', 'file']"
         module="MusicChain"
       /> -->
+      <sp-type-form type="artist" :fields="['name']" module="MusicChain" />
+      <sp-type-form type="musics" module="MusicChain" />
       <h3>New Music</h3>
       <div style="border:1px solid black;padding:20px">
         <input placeholder="price" id="price" autocomplete="off" /><br />
@@ -20,10 +20,11 @@
         <input type="file" id="file" /><br />
         <button v-on:click="onClickCreate()">CREATE MUSIC</button>
       </div>
-      <sp-type-form type="musics" module="MusicChain" />
-      <div></div>
-      <sp-type-form type="artist" :fields="['name']" module="MusicChain" />
-
+      <sp-type-form
+        type="purchased"
+        :fields="['MusicID']"
+        module="MusicChain"
+      />
     </div>
   </div>
 </template>
