@@ -12,6 +12,7 @@ func RegisterCodec(cdc *codec.Codec) {
 	cdc.RegisterConcrete(MsgSetMusics{}, "MusicChain/SetMusics", nil)
 	cdc.RegisterConcrete(MsgDeleteMusics{}, "MusicChain/DeleteMusics", nil)
 	cdc.RegisterConcrete(MsgCreateArtist{}, "MusicChain/CreateArtist", nil)
+	cdc.RegisterConcrete(MsgRequestPurchasedMusicTemporarilyLink{}, "MusicChain/ReqPMusicTempL", nil)
 }
 
 // ModuleCdc defines the module codec

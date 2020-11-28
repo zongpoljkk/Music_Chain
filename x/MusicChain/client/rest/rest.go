@@ -12,6 +12,7 @@ func RegisterRoutes(cliCtx context.CLIContext, r *mux.Router) {
 	r.HandleFunc("/MusicChain/purchased", createPurchasedHandler(cliCtx)).Methods("POST")
 	r.HandleFunc("/MusicChain/purchased", listPurchasedHandler(cliCtx, "MusicChain")).Methods("GET")
 	r.HandleFunc("/MusicChain/purchased/{key}", getPurchasedHandler(cliCtx, "MusicChain")).Methods("GET")
+	r.HandleFunc("/MusicChain/requestPurchasedLink", playPurchasedHandler(cliCtx, "MusicChain")).Methods("POST")
 
 	r.HandleFunc("/MusicChain/musics", createMusicsHandler(cliCtx)).Methods("POST")
 	r.HandleFunc("/MusicChain/musics", listMusicsHandler(cliCtx, "MusicChain")).Methods("GET")
