@@ -38,7 +38,7 @@ func UploadBytesToGCS(filename string, content []byte) (*storage.ObjectAttrs, er
 	return newObject.Attrs(context.Background())
 }
 
-func GetObjectSignedURL(filename string, duration time.Duration) (string, error) {
+func GetObjectSignedURL(filename string, from time.Time, duration time.Duration) (string, error) {
 	jsonKey, err := ioutil.ReadFile(SERVICE_ACCOUNT)
 	if err != nil {
 		return "", fmt.Errorf("ioutil.ReadFile: %v", err)
@@ -52,7 +52,7 @@ func GetObjectSignedURL(filename string, duration time.Duration) (string, error)
 		Method:         "GET",
 		GoogleAccessID: conf.Email,
 		PrivateKey:     conf.PrivateKey,
-		Expires:        time.Now().Add(duration),
+		Expires:        from.Add(duration),
 	}
 	u, err := storage.SignedURL(BUCKET_NAME, filename, opts)
 	if err != nil {
